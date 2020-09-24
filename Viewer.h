@@ -19,6 +19,9 @@ public:
 	static void cursorPoisitionCallback(GLFWwindow* const window, const double xpos, const double ypos);
 	//scroll -> zoom
 	static void scrollCallback(GLFWwindow* const window, const double xoffset, const double yoffset);
+
+	//calculates info of each pixel using Projection, View, Model Matrices
+	void draw();
 private:
 	GLFWwindow* window;
 	int width, height;
