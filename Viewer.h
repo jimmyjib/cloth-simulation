@@ -1,6 +1,7 @@
 #pragma once
 #include <GLFW/glfw3.h>
 #include <GL/glew.h>
+#include "Camera.h"
 
 //sets window, initialize camera, callaback functions
 class Viewer
@@ -24,7 +25,8 @@ public:
 	void draw();
 private:
 	GLFWwindow* window;
-	int width, height;
+	static int width, height;
 
+	static Camera cam;
 };
 

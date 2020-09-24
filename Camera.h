@@ -24,32 +24,32 @@ public:
 	//Getter & Setter
 
 	//Position
-	glm::vec3 getPosition();
+	static glm::vec3 getPosition();
 	void setPosition(glm::vec3 _src);
 	void setPosition(float x, float y, float z);
 
 	//LookAt
-	glm::vec3 getLookAt();
+	static glm::vec3 getLookAt();
 	void setLookAt(glm::vec3 _src);
 	void setLookAt(float x, float y, float z);
 
 	//Up
-	glm::vec3 getUpVec();
+	static glm::vec3 getUpVec();
 	void setUpVec(glm::vec3 _src);
 	void setUpVec(float x, float y, float z);
 
 	//Orientation
-	Quaternion getOrientation();
+	static Quaternion getOrientation();
 	void setOrientation(Quaternion _src);
 	void setOrientation(float x, float y, float z, float theta);
 	void setOrientation(glm::vec3 axis, float theta);
 
 	//Near
-	float getNear();
+	static float getNear();
 	void setNear(float _near);
 
 	//Far
-	float getFar();
+	static float getFar();
 	void setFar(float _far);
 
 	//Angle
@@ -61,9 +61,9 @@ public:
 	//Z: position - lookat
 	//(a vector that points the target position from camera location)
 	//X: Y cross Z 
-	glm::vec3 getLocalXAxis();
-	glm::vec3 getLocalYAxis();
-	glm::vec3 getLocalZAxis();
+	static glm::vec3 getLocalXAxis();
+	static glm::vec3 getLocalYAxis();
+	static glm::vec3 getLocalZAxis();
 
 	//Get Final Matrix
 	glm::mat4 viewMat();
@@ -72,31 +72,31 @@ public:
 	//Camera Manipulation
 
 	//Translation
-	void translate(float x, float y, float z);
-	void translate(glm::vec3 vec);
+	static void translate(float x, float y, float z);
+	static void translate(glm::vec3 vec);
 	//Middle Mouse Dragging
-	void translate(int prevX, int prevY, int curX, int curY);
+	static void translate(int prevX, int prevY, int curX, int curY);
 
 	//Rotation
-	void rotate(glm::vec3 axis, float theta);
-	void rotate(Quaternion rotation);
+	static void rotate(glm::vec3 axis, float theta);
+	static void rotate(Quaternion rotation);
 	//Left Mouse Dragging
-	void rotate(int prevX, int prevY, int curX, int curY, int window_w, int window_h);
+	static void rotate(int prevX, int prevY, int curX, int curY, int window_w, int window_h);
 	//2D Mouse(Viewport) -> 3D Sphere
-	glm::vec3 viewPortPositionToTrackBall(int vp_w, int vp_h, int x, int y);
+	static glm::vec3 viewPortPositionToTrackBall(int vp_w, int vp_h, int x, int y);
 
 	//Dolly (moving camera fw/bw)
 	void dollyIn();
 	void dollyOut();
 
 private:
-	float zNear;
-	float zFar;
-	float viewingAngle;
+	static float zNear;
+	static float zFar;
+	static float viewingAngle;
 
-	glm::vec3 pos;
-	glm::vec3 lookat;
-	glm::vec3 up;
-	Quaternion ori;
+	static glm::vec3 pos;
+	static glm::vec3 lookat;
+	static glm::vec3 up;
+	static Quaternion ori;
 };
 

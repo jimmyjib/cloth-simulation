@@ -1,13 +1,38 @@
 #include <iostream>
 #include "Viewer.h"
 
+//used to implement dragging
+double gClickedPositionX = 0;
+double gClickedPositionY = 0;
+
 //input -> camera control
+//callbacks : static -> member functions inside : static
 void Viewer::cursorPoisitionCallback(GLFWwindow* const window, const double xpos, const double ypos) {
-	
+	int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+	if (state == GLFW_PRESS)
+	{
+		cam.rotate((int)gClickedPositionX, (int)gClickedPositionY, (int)xpos, (int)ypos, width, height);
+	}
+	else
+	{
+		state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_MIDDLE);
+		if (state == GLFW_PRESS)
+		{
+			cam.translate((int)gClickedPositionX, (int)gClickedPositionY, (int)xpos, (int)ypos);
+		}
+	}
+
+	gClickedPositionX = xpos;
+	gClickedPositionY = ypos;
 }
 
 void Viewer::scrollCallback(GLFWwindow* const window, const double xoffset, const double yoffset) {
-
+	if (yoffset > 0) {
+		cam.dollyIn();
+	}
+	else {
+		cam.dollyOut();
+	}
 }
 
 Viewer::Viewer(const int w, const int h) {
@@ -16,6 +41,9 @@ Viewer::Viewer(const int w, const int h) {
 
 	//initialize window
 	initGlfwWindow();
+
+	//initialize camera
+	cam.initialize();
 
 	//set callback functions
 	glfwSetCursorPosCallback(window, cursorPoisitionCallback);
