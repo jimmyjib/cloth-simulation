@@ -3,7 +3,9 @@
 #include <GL/glew.h>
 #include "Camera.h"
 
-//sets window, initialize camera, callaback functions
+//sets window, initialize camera/shader , callaback functions
+//main function is integrating classes
+//actual caculations are done inside each class
 class Viewer
 {
 public:
@@ -22,11 +24,14 @@ public:
 	static void scrollCallback(GLFWwindow* const window, const double xoffset, const double yoffset);
 
 	//calculates info of each pixel using Projection, View, Model Matrices
+	//called inside a while loop in the main function
+	//update matrices with datas in camera object 
 	void draw();
 private:
 	GLFWwindow* window;
 	static int width, height;
 
+	//datas change when callback is called
 	static Camera cam;
 };
 

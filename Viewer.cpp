@@ -98,3 +98,11 @@ int Viewer::initGlfwWindow() {
 
 	return 1;
 }
+
+void Viewer::draw(){
+	//sets ModelView Matrix, Projection Matrix, View Matrix
+	//camera -> Projection Matrix, View Matrix
+	//ModelView -> Identity 
+	//might implement a way to modify ModelView mat in runtime
+
+}

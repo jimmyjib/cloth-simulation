@@ -8,6 +8,8 @@
 #define DOLLY_MAXIMUM			1000.f
 #define ROTATE_SENSITIVITY      1.f
 
+//class that has informations about camera
+//and methods to manipulate it
 class Camera
 {
 public:
