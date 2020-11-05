@@ -1,6 +1,8 @@
 #pragma once
 #include <GLFW/glfw3.h>
 #include <GL/glew.h>
+#include <glm/glm.hpp>
+#include "Shader.h"
 #include "Camera.h"
 
 //sets window, initialize camera/shader , callaback functions
@@ -33,5 +35,8 @@ private:
 
 	//datas change when callback is called
 	static Camera cam;
+
+	//shader program 
+	Shader shader;
 };
 

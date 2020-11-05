@@ -17,7 +17,7 @@ out vec3 fragmentColor;
 uniform mat4 MVP;
 uniform mat4 V;
 uniform mat4 M;
-uniform vec3 LightPosition_worldspace;
+uniform vec3 LightPos_worldspace;
 
 //basic flow of process
 //1. vertex_modelspace modified by ModelView Matrix M, change to worldspace(actual postion in the world) -> M*vertex_modelspace
@@ -32,11 +32,11 @@ void main(){
 
 	Pos_worldspace = (M * vec4(vertexPos_modelspace,1)).xyz;
 	
-	vec3 vertexPosition_cameraspace = (V * M * vec4(vertexPosition_modelspace,1)).xyz;
-	CameraPosRelVertex_cameraspace = vec3(0,0,0) - vertexPosition_cameraspace;
+	vec3 vertexPos_cameraspace = (V * M * vec4(vertexPos_modelspace,1)).xyz;
+	CameraPosRelVertex_cameraspace = vec3(0,0,0) - vertexPos_cameraspace;
 
-	vec3 LightPosition_cameraspace = (V * vec4(LightPosition_worldspace,1)).xyz;
-	LightPosRelVertex_cameraspace = LightPosition_cameraspace + CameraPosRelVertex_cameraspace;
+	vec3 LightPos_cameraspace = (V * vec4(LightPos_worldspace,1)).xyz;
+	LightPosRelVertex_cameraspace = LightPos_cameraspace + CameraPosRelVertex_cameraspace;
 
 	//Only correct if ModelMatrix does not scale the model ! Use its inverse transpose if not.
 	//vector's starting point is fixed to the origin

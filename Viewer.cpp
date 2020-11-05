@@ -104,5 +104,45 @@ void Viewer::draw(){
 	//camera -> Projection Matrix, View Matrix
 	//ModelView -> Identity 
 	//might implement a way to modify ModelView mat in runtime
+	//a method that serves as a frame of obj.draw()
+	//sets matrix & openGL variables
 
+	//get IDs for Matrices(uniform variable in shader)
+	GLuint MVP_ID = glGetUniformLocation(shader.id(), "MVP");
+	GLuint V_ID = glGetUniformLocation(shader.id(), "V");
+	GLuint M_ID = glGetUniformLocation(shader.id(), "M");
+	GLuint LightPos_ID = glGetUniformLocation(shader.id(), "LightPos_worldspace");
+
+	glClearColor(1.f, 1.f, 1.f, 1.f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//use shader program
+	glUseProgram(shader.id());
+
+	//calculate 4 matrices
+	//get matrix of gluPerspective function
+	glm::mat4 Projection = glm::perspective(cam.getViewingAngle(), (float)width / (float)height, cam.getNear(), cam.getFar());
+	glm::mat4 View = cam.viewMat();
+	//identity matrix, ModelMatrix not used in this project
+	glm::mat4 Model = glm::mat4(1.0f);
+	glm::mat4 MVP = Projection * View * Model;
+
+	//bind Matrix to Matrix ID
+	glUniformMatrix4fv(MVP_ID, 1, GL_FALSE, &MVP[0][0]);
+	glUniformMatrix4fv(M_ID, 1, GL_FALSE, &Model[0][0]);
+	glUniformMatrix4fv(V_ID, 1, GL_FALSE, &View[0][0]);
+
+	//set light position
+	glm::vec3 lightPos = glm::vec3(2, 5, 4);
+	//bind light position
+	glUniform3f(LightPos_ID, lightPos.x, lightPos.y, lightPos.z);
+
+	//draw objects
+
+
+
+	//stop using program
+	glUseProgram(0);
+
+	glfwSwapBuffers(window);
 }
