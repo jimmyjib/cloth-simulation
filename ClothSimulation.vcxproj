@@ -150,6 +150,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SparseMatrix.cpp" />
     <ClCompile Include="Viewer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SparseMatrix.h" />
     <ClInclude Include="Viewer.h" />
   </ItemGroup>
   <ItemGroup>
