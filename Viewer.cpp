@@ -138,8 +138,9 @@ void Viewer::draw(){
 	glUniform3f(LightPos_ID, lightPos.x, lightPos.y, lightPos.z);
 
 	//draw objects
-
-
+	for (auto& obj : objs) {
+		obj.draw();
+	}
 
 	//stop using program
 	glUseProgram(0);
