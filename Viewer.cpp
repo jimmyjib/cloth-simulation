@@ -5,6 +5,11 @@
 double gClickedPositionX = 0;
 double gClickedPositionY = 0;
 
+//define static variables
+Camera Viewer::cam;
+int Viewer::width;
+int Viewer::height;
+
 //input -> camera control
 //callbacks : static -> member functions inside : static
 void Viewer::cursorPoisitionCallback(GLFWwindow* const window, const double xpos, const double ypos) {
@@ -44,6 +49,9 @@ Viewer::Viewer(const int w, const int h) {
 
 	//initialize camera
 	cam.initialize();
+
+	//initialize shader
+	initShader();
 
 	//set callback functions
 	glfwSetCursorPosCallback(window, cursorPoisitionCallback);

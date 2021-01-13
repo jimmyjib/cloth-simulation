@@ -7,6 +7,8 @@ in vec3 CameraPosRelVertex_cameraspace;
 in vec3 LightPosRelVertex_cameraspace;
 in vec3 fragmentColor;
 
+out vec3 color;
+
 uniform mat4 MV;
 uniform vec3 LightPos_worldspace;
 

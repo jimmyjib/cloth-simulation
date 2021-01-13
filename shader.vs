@@ -30,7 +30,7 @@ void main(){
 	//convet to vec4, last entry 1
 	gl_Position = MVP * vec4(vertexPos_modelspace,1);
 
-	Pos_worldspace = (M * vec4(vertexPos_modelspace,1)).xyz;
+	vertexPos_worldspace = (M * vec4(vertexPos_modelspace,1)).xyz;
 	
 	vec3 vertexPos_cameraspace = (V * M * vec4(vertexPos_modelspace,1)).xyz;
 	CameraPosRelVertex_cameraspace = vec3(0,0,0) - vertexPos_cameraspace;
@@ -41,7 +41,7 @@ void main(){
 	//Only correct if ModelMatrix does not scale the model ! Use its inverse transpose if not.
 	//vector's starting point is fixed to the origin
 	//last entry -> 0 makes the translation component of matrix to not affect the normal vector
-	Normal_cameraspace = ( V * M * vec4(vertexNormal,0)).xyz;
+	vertexNormal_cameraspace = ( V * M * vec4(vertexNormal,0)).xyz;
 
 	fragmentColor = vertexColor;
 }

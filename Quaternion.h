@@ -39,8 +39,13 @@ public:
 	float& operator[](int i) { return q[i]; }
 	const float& operator[](int i) const { return q[i]; }
 
-	friend Quaternion operator*(const Quaternion& a, const Quaternion& b);
-	friend glm::vec3 operator*(const Quaternion& Q, const glm::vec3& v) { return Q.rotate(v) };
+	friend Quaternion operator*(const Quaternion& a, const Quaternion& b) {
+		return Quaternion(a.q[3] * b.q[0] + b.q[3] * a.q[0] + a.q[1] * b.q[2] - a.q[2] * b.q[1],
+			a.q[3] * b.q[1] + b.q[3] * a.q[1] + a.q[2] * b.q[0] - a.q[0] * b.q[2],
+			a.q[3] * b.q[2] + b.q[3] * a.q[2] + a.q[0] * b.q[1] - a.q[1] * b.q[0],
+			a.q[3] * b.q[3] - b.q[0] * a.q[0] - a.q[1] * b.q[1] - a.q[2] * b.q[2]);
+	}
+	friend glm::vec3 operator*(const Quaternion& Q, const glm::vec3& v) { return Q.rotate(v); }
 	Quaternion& operator=(const Quaternion& Q) {
 		memcpy(q, Q.q, 4 * sizeof(float));
 		return (*this);
@@ -92,20 +97,3 @@ private:
 	float q[4];
 };
 
-Quaternion operator*(const Quaternion& a, const Quaternion& b) {
-	return Quaternion(a.q[3] * b.q[0] + b.q[3] * a.q[0] + a.q[1] * b.q[2] - a.q[2] * b.q[1],
-		a.q[3] * b.q[1] + b.q[3] * a.q[1] + a.q[2] * b.q[0] - a.q[0] * b.q[2],
-		a.q[3] * b.q[2] + b.q[3] * a.q[2] + a.q[0] * b.q[1] - a.q[1] * b.q[0],
-		a.q[3] * b.q[3] - b.q[0] * a.q[0] - a.q[1] * b.q[1] - a.q[2] * b.q[2]);
-}
-
-Quaternion Quaternion::randomQuaternion() {
-	// floathe rand() function is not very portable and may not be available on your system.
-	// Add the appropriate include or replace by an other random function in case of problem.
-	float seed = rand() / (float)RAND_MAX;
-	float r1 = sqrt(1.f - seed);
-	float r2 = sqrt(seed);
-	float t1 = 2.f * PI * (rand() / (float)RAND_MAX);
-	float t2 = 2.f * PI * (rand() / (float)RAND_MAX);
-	return Quaternion(sin(t1) * r1, cos(t1) * r1, sin(t2) * r2, cos(t2) * r2);
-}

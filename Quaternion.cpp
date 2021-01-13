@@ -245,6 +245,7 @@ glm::vec3 Quaternion::rotate(const glm::vec3& v) const {
 	);
 }
 
+//other
 Quaternion Quaternion::slerp(const Quaternion& a, const Quaternion& b, float t, bool allowFlip) {
 	float cosAngle = Quaternion::dot(a, b);
 	float c1, c2;
@@ -315,4 +316,15 @@ Quaternion Quaternion::squadfloatangent(const Quaternion& before, const Quaterni
 	// e.negate();
 
 	return e;
+}
+
+Quaternion Quaternion::randomQuaternion() {
+	// float rand() function is not very portable and may not be available on your system.
+	// Add the appropriate include or replace by an other random function in case of problem.
+	float seed = rand() / (float)RAND_MAX;
+	float r1 = sqrt(1.f - seed);
+	float r2 = sqrt(seed);
+	float t1 = 2.f * PI * (rand() / (float)RAND_MAX);
+	float t2 = 2.f * PI * (rand() / (float)RAND_MAX);
+	return Quaternion(sin(t1) * r1, cos(t1) * r1, sin(t2) * r2, cos(t2) * r2);
 }

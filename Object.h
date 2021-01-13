@@ -1,6 +1,6 @@
 #pragma once
 #include <glm/glm.hpp>
-#include <GL/glew.h>
+#include <gl/glew.h>
 #include <assimp/Importer.hpp>      // C++ importer interface
 #include <assimp/scene.h>           // Output data structure(scene)
 #include <assimp/postprocess.h>     // Post processing flags - aiProcess

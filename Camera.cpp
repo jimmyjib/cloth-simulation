@@ -1,6 +1,16 @@
 #include "Camera.h"
 #include <glm/gtc/matrix_transform.hpp>
 
+//define static variables
+float Camera::zNear;
+float Camera::zFar;
+float Camera::viewingAngle;
+
+glm::vec3 Camera::pos;
+glm::vec3 Camera::lookat;
+glm::vec3 Camera::up;
+Quaternion Camera::ori;
+
 Camera::Camera() {
     initialize();
 }

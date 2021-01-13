@@ -2,11 +2,7 @@
 #include <glm/glm.hpp>
 #include <glm/vec3.hpp>
 #include <vector>
-
-//std::vector of 3D/2D vectors
-typedef std::vector<glm::vec3> vec3N_float;
-typedef std::vector<glm::ivec2> vec2N_int;
-typedef std::vector<glm::ivec3> vec3N_int;
+#include "Vec3N.h"
 
 //Compressed Sparse Row
 class SparseMatrix{

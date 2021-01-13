@@ -10,7 +10,7 @@ int main()
 	//make clothsimulator object
 	ClothSimulator c;
 	//generate cloth mesh
-	c.generateMesh();
+	c.generateMesh(3.f, 3.f, 33, 33, 0.1f);
 	//put cloth object in viewer
 	v.addDrawingObject(c.object());
 

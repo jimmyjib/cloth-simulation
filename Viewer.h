@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
+#include <gl/glew.h>
 #include <GLFW/glfw3.h>
-#include <GL/glew.h>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Shader.h"
 #include "Camera.h"
+#include "Shader.h"
 #include "Object.h"
 
 //sets window, initialize camera/shader , callback functions
@@ -19,6 +19,11 @@ public:
 
 	//initialize window
 	int initGlfwWindow();
+
+	//initialize shader
+	void initShader() {
+		shader.LoadShaders("shader.vs", "shader.fs");
+	}
 
 	//callback functions
 	//(needs to be static to use the set Callback func of glfw)
