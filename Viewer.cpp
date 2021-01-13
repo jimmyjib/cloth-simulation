@@ -9,6 +9,7 @@ double gClickedPositionY = 0;
 Camera Viewer::cam;
 int Viewer::width;
 int Viewer::height;
+bool pause;
 
 //input -> camera control
 //callbacks : static -> member functions inside : static
@@ -40,6 +41,12 @@ void Viewer::scrollCallback(GLFWwindow* const window, const double xoffset, cons
 	}
 }
 
+void Viewer::keyCallback(GLFWwindow* const window, int key, int scancode, int action, int mods) {
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS) {
+		pause = !pause;
+	}
+}
+
 Viewer::Viewer(const int w, const int h) {
 	width = w;
 	height = h;
@@ -56,6 +63,7 @@ Viewer::Viewer(const int w, const int h) {
 	//set callback functions
 	glfwSetCursorPosCallback(window, cursorPoisitionCallback);
 	glfwSetScrollCallback(window, scrollCallback);
+	glfwSetKeyCallback(window, keyCallback);
 }
 
 int Viewer::initGlfwWindow() {

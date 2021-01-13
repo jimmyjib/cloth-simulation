@@ -17,8 +17,8 @@ void ClothSimulator::calcGravityForce() {
 //calculate force & matrix K
 void ClothSimulator::calcStretchShearForce()
 {
-	float kst = 5000;
-	float ksh = 500;
+	float kst = 30000;
+	float ksh = 1000;
 	//0:i 1:j 2:k
 	for (int t = 0; t < nT; t++) {
 

@@ -2,6 +2,8 @@
 #include "Viewer.h"
 #include "ClothSimulator.h"
 
+bool Viewer::pause;
+
 int main()
 {
 	//make 1280x960 window;
@@ -14,10 +16,12 @@ int main()
 	//put cloth object in viewer
 	v.addDrawingObject(c.object());
 
+	v.pause = true;
+
 	//simulate cloth until escape Trigger
 	do {
 		//calculate positions of next step
-		c.solve();
+		if (!v.pause) c.solve();
 
 		//since vertex informations are saved in VBO
 		//updating values in "ClothSimulator" class will also affect

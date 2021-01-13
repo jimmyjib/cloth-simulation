@@ -31,6 +31,7 @@ public:
 	static void cursorPoisitionCallback(GLFWwindow* const window, const double xpos, const double ypos);
 	//scroll -> zoom
 	static void scrollCallback(GLFWwindow* const window, const double xoffset, const double yoffset);
+	static void keyCallback(GLFWwindow* const window, int key, int scancode, int action, int mods);
 
 	//calculates info of each pixel using Projection, View, Model Matrices
 	//called inside a while loop in the main function
@@ -51,6 +52,7 @@ public:
 		return glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0;
 	}
 
+	static bool pause;
 private:
 	GLFWwindow* window;
 	static int width, height;
